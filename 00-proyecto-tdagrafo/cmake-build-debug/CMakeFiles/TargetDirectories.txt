@@ -1,0 +1,3 @@
+C:/Users/Tobias/Documents/Facultad/TDAGrafoClion/cmake-build-debug/CMakeFiles/TDAGrafoClion.dir
+C:/Users/Tobias/Documents/Facultad/TDAGrafoClion/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Tobias/Documents/Facultad/TDAGrafoClion/cmake-build-debug/CMakeFiles/rebuild_cache.dir
