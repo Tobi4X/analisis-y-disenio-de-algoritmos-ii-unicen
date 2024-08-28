@@ -6,15 +6,22 @@ using namespace std;
 #ifndef VERTIE_H
 #define VERTIE_H
 
-#include "list"
+#include "set"
+#include "Arco.h"
 
 template <typename C> class Vertice
 {
 public:
-    void obtenerAdyacentes();
+    Vertice(int id);
+
+    ~Vertice();
+
+    void obtenerAdyacentes(set<Arco> destinos);
     void obtenerId();
+    void agregarDestino();
+
 private:
-    list<Arco> destinos;
+    set<Arco> destinos;
     int id;
 };
 #endif //VERTIE_H

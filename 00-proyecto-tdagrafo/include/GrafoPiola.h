@@ -7,8 +7,10 @@ using namespace std;
 #ifndef GRAFOPIOLA_H
 #define GRAFOPIOLA_H
 
-#include "list"
+#include "set"
 #include "map"
+#include "Arco.h"
+#include "Vertice.h"
 
 template <typename C> class GrafoPiola
 {
@@ -23,9 +25,9 @@ public:
 
     bool existeArco(Arco arco) const;
 
-    list<Vertice> obtenerVertices() const;
+    set<Vertice> obtenerVertices() const;
 
-    list<Arco> obtenerArcos() const;
+    set<Arco> obtenerArcos() const;
 
     void agregarVertice(Vertice vertice);
 
@@ -36,8 +38,8 @@ public:
     void eliminarArco(Arco arco);
 
 private:
-    list<Vertice> vertices;
-    list<Arco> arcos;
+    set<Vertice> vertices;
+    set<Arco> arcos;
 };
 
 #endif //GRAFOPIOLA_H

@@ -1,4 +1,4 @@
-#include "../include/Grafo.h"
+#include "Grafo.h"
 
 #include <cassert>
 #include <list>

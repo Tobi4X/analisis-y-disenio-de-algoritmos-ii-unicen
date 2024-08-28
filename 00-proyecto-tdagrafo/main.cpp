@@ -1,4 +1,4 @@
-#include "include/Grafo.h"
+#include "clasesDadasPorLaCatedra/Grafo.h"
 
 #include "iostream"
 
