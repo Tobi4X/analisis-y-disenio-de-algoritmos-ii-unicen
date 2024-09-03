@@ -22,8 +22,6 @@ void dfsDos(const Grafo<int> & grafo, int pos, bool visitado[])
 			dfsDos(grafo,c.devolver_destino(),visitado);
 		}
 	}
-
-
 }
 
 
@@ -53,9 +51,6 @@ void dfs(const Grafo<int> & grafo)
             dfsDos(grafo, v, visitados);
 		}
 	}
-
-
-
 }
 
 int main(int argc, char **argv)
