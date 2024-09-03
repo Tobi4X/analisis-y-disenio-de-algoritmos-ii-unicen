@@ -1,56 +1,25 @@
-#include "clasesDadasPorLaCatedra/Grafo.h"
+#include "include/Grafo.tpp"
+#include "include/Arco.tpp"
+#include <list>
+
 
 #include "iostream"
 
 using namespace std;
 
-template <typename C>
-ostream & operator << (ostream & salida, const Grafo<C> & grafo)
-{
-	// Recorremos todos los vertices
-	// COMPLEJIDAD DE N´2
-	list<int> vertices;
-	grafo.devolver_vertices(vertices);
-	list<int>::iterator v = vertices.begin();
-	while (v != vertices.end()) {
-		salida << "    " << *v << endl;
-		// Recorremos todos los adyacentes de cada vertice
-		list<typename Grafo<C>::Arco> adyacentes;
-		grafo.devolver_adyacentes(*v, adyacentes);
-		typename list<typename Grafo<C>::Arco>::iterator ady = adyacentes.begin();
-		while (ady != adyacentes.end()) {
-			salida << "    " << *v << "-> " << ady->devolver_destino() << " (" << ady->devolver_costo() << ")" << endl;
-			ady++;
-		}
-		v++;
-	}
-
-	list<typename Grafo<C>::Arco> arcos;
-	grafo.devolver_arcos(arcos);
-	salida << "Todos los arcos: " << endl;
-	typename list<typename Grafo<C>::Arco>::iterator ady = arcos.begin();
-    while (ady != arcos.end()) {
-        salida << " (" << ady->devolver_origen() << ", " << ady->devolver_destino() << ", "  << ady->devolver_costo() << ")" << endl;
-        ady++;
-    }
-	return salida;
-}
-
-void recorrer(const Grafo<int> & grafo);
-
-void dfs(const Grafo<int> & grafo, int pos, bool visitado[])
+void dfsDos(const Grafo<int> & grafo, int pos, bool visitado[])
 {
 	visitado[pos] = true;
 
-	list<Grafo<int>::Arco> adyacentes;
+    std::list<Arco<int>> adyacentes;
 	grafo.devolver_adyacentes(pos, adyacentes);
 
-	for(Grafo<int>::Arco c : adyacentes)
+	for(Arco c : adyacentes)
 	{
 		if(!visitado[c.devolver_destino()])
 		{
 			cout<<c.devolver_destino()<<endl;;
-			dfs(grafo,c.devolver_destino(),visitado);
+			dfsDos(grafo,c.devolver_destino(),visitado);
 		}
 	}
 
@@ -60,7 +29,7 @@ void dfs(const Grafo<int> & grafo, int pos, bool visitado[])
 
 void dfs(const Grafo<int> & grafo)
 {
-	list<int> vertices;
+	std::list<int> vertices;
 	grafo.devolver_vertices(vertices);
 
 	cout<<"VERTICES ="<<endl;
@@ -81,7 +50,7 @@ void dfs(const Grafo<int> & grafo)
 	for(int v : vertices){
 		if(v >= 0 and visitados[v] != true)
 		{
-			dfs(grafo, v, visitados);
+            dfsDos(grafo, v, visitados);
 		}
 	}
 
@@ -112,7 +81,7 @@ int main(int argc, char **argv)
 	g.agregar_arco(6, 6, 34);
 
 	// Mostramos el grafo
-	cout << "Estructura del grafo:\n" << g << "(" << g.cantidad_vertices()
+	cout << "Estructura del grafo:\n" << "(" << g.cantidad_vertices()
         << " vertices, " << g.cantidad_arcos() << " arcos)" << endl;
 
     dfs(g);

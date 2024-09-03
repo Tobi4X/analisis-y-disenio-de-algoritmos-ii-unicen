@@ -52,11 +52,7 @@
 			},
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				6,
-				7,
-				8
+				0
 			]
 		}
 	],
@@ -93,21 +89,15 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				6,
-				7,
-				8
+				0
 			]
 		},
 		{
-			"name" : "Header Files",
+			"name" : "",
 			"sourceIndexes" : 
 			[
-				2,
-				3,
-				4,
-				5
+				1,
+				2
 			]
 		}
 	],
@@ -121,47 +111,13 @@
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "clasesDadasPorLaCatedra/Grafo.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "clasesDadasPorLaCatedra/Grafo.h",
+			"path" : "include/Grafo.tpp",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "include/GrafoPiola.h",
+			"path" : "include/Arco.tpp",
 			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/Arco.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/Vertice.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/GrafoPiola.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/Arco.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/Vertice.cpp",
-			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "EXECUTABLE"
