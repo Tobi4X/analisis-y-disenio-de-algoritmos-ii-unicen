@@ -5,9 +5,8 @@
 
 using namespace std;
 
-void dijkstra(Grafo<int> g, int origen){
-    map<int, int> distancias;
-    map<int, int> predecesores;
+
+void dijkstra(Grafo<int> g, int origen, map<int, int> &distancias, map<int, int> &predecesores) {
 
     distancias.emplace(origen, 0);
     predecesores.emplace(origen,-1);
@@ -40,16 +39,43 @@ void dijkstra(Grafo<int> g, int origen){
             }
         }
     }
+}
 
-    for (pair<int, int> dis : distancias) {
-        cout << "para el vertice: " << dis.first << " el costo es : " << dis.second << endl;
+void dijkstraHasta(Grafo<int> g, int origen, int destino, map<int, int> &distancias, map<int, int> &predecesores){
+
+    distancias.emplace(origen, 0);
+    predecesores.emplace(origen,-1);
+
+    list<int> vertices;
+    g.devolver_vertices(vertices);
+
+    for(int vertice : vertices){
+        if (vertice != origen){
+            try {
+                distancias.emplace(vertice, g.costo_arco(origen, vertice));
+            } catch (exception &e) {
+                distancias.emplace(vertice, 9999);
+                cout<<e.what()<<endl;
+                cout<<endl;
+            }
+            predecesores.emplace(vertice, origen);
+        }
     }
 
-    cout << endl;
-
-    for (pair<int, int> pre : predecesores) {
-        cout << "para el vertice : " <<pre.first << " el predecesor es : " << pre.second << endl;
+    while(!vertices.empty()) {
+        const int ver = vertices.front();
+        vertices.pop_front();
+        if(vertices.front() == destino){return;}
+        list<Arco<int>> adyacentes;
+        g.devolver_adyacentes(ver,adyacentes);
+        for(Arco<int> ady : adyacentes) {
+            if(distancias.at(ady.devolver_destino()) > distancias.at(ady.devolver_origen()) + ady.devolver_costo() ) {
+                distancias.at(ady.devolver_destino()) = distancias.at(ady.devolver_origen()) + ady.devolver_costo();
+                predecesores.at(ady.devolver_destino()) = ady.devolver_origen();
+            }
+        }
     }
+
 }
 
 
@@ -73,7 +99,36 @@ int main() {
     g.agregar_arco(4, 6, 2);
     g.agregar_arco(5, 6, 1);
 
-    dijkstra(g, 1);
+    map<int, int> distancias;
+    map<int, int> predecesores;
+
+    dijkstra(g, 1, distancias, predecesores);
+
+    for (pair<int, int> dis : distancias) {
+        cout << "para el vertice: " << dis.first << " el costo es : " << dis.second << endl;
+    }
+
+    cout << endl;
+
+    for (pair<int, int> pre : predecesores) {
+        cout << "para el vertice : " <<pre.first << " el predecesor es : " << pre.second << endl;
+    }
+
+    distancias.clear();
+    predecesores.clear();
+    cout << endl;
+
+    dijkstraHasta(g, 2 ,4, distancias, predecesores);
+
+    for (pair<int, int> dis : distancias) {
+        cout << "para el vertice: " << dis.first << " el costo es : " << dis.second << endl;
+    }
+
+    cout << endl;
+
+    for (pair<int, int> pre : predecesores) {
+        cout << "para el vertice : " <<pre.first << " el predecesor es : " << pre.second << endl;
+    }
 
     return 0;
 }
