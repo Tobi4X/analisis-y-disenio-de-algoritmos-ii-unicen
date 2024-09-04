@@ -5,36 +5,9 @@
 
 using namespace std;
 
-void restarSoluciones(list<int> vertices, set<int> soluciones, list<int> &resultado){
-    for(int solucion : soluciones){
-        vertices.remove(solucion);
-    }
-    resultado.erase(resultado.begin(), resultado.end());
-    resultado.insert(resultado.end(), vertices.begin(), vertices.end());
-}
-
-void obtenerVerticeMasCercano(Grafo<int> g, int vertice, int &verticeCercano ){
-    list<Arco<int>> adyacentes;
-    g.devolver_adyacentes(vertice, adyacentes);
-
-    int costoActual = 999999999999999999;
-    int costoNuevo = 0;
-
-    for(Arco<int> arco : adyacentes){
-        costoNuevo = arco.devolver_costo();
-        if(costoNuevo < costoActual){
-            costoActual = costoNuevo;
-            verticeCercano = arco.devolver_destino();
-        }
-    }
-}
-
 void dijkstra(Grafo<int> g, int origen){
-    set<int> soluciones;
     map<int, int> distancias;
     map<int, int> predecesores;
-
-    soluciones.emplace(origen);
 
     distancias.emplace(origen, 0);
     predecesores.emplace(origen,-1);
@@ -42,37 +15,65 @@ void dijkstra(Grafo<int> g, int origen){
     list<int> vertices;
     g.devolver_vertices(vertices);
 
-    list<int> verticesMenosSoluciones;
-
-    verticesMenosSoluciones.insert(verticesMenosSoluciones.end(),vertices.begin(), vertices.end());
-
     for(int vertice : vertices){
         if (vertice != origen){
-            distancias.emplace(vertice, g.costo_arco(origen,vertice));
+            try {
+                distancias.emplace(vertice, g.costo_arco(origen, vertice));
+            } catch (exception &e) {
+                distancias.emplace(vertice, 9999);
+                cout<<e.what()<<endl;
+                cout<<endl;
+            }
             predecesores.emplace(vertice, origen);
         }
     }
 
-    while(verticesMenosSoluciones.size() > 0){
-        restarSoluciones(vertices, soluciones, verticesMenosSoluciones);
-        int verticeCercano = 0;
-        obtenerVerticeMasCercano(g, origen, verticeCercano);
-        soluciones.emplace(verticeCercano);
-    //para cada vertice adyacente a este que no este en verticesMenosSoluciones
+    while(!vertices.empty()) {
+        const int ver = vertices.front();
+        vertices.pop_front();
         list<Arco<int>> adyacentes;
-        g.devolver_adyacentes(verticeCercano, adyacentes);
-        for(Arco<int> adyacente : adyacentes)
-            if (g.costo_arco(predecesores.))
-        //comparo si la distancia al vertice adyacente desde el vertice que predecesor es mayor al vertice w + costo de ir al vertice
-        //en caso afirmativo cambio la distancia al vertice actual del foreach por la distancia desde el w + el costo
-        //asigno el predecesor del vertice del foreach a el vertice w
+        g.devolver_adyacentes(ver,adyacentes);
+        for(Arco<int> ady : adyacentes) {
+            if(distancias.at(ady.devolver_destino()) > distancias.at(ady.devolver_origen()) + ady.devolver_costo() ) {
+                distancias.at(ady.devolver_destino()) = distancias.at(ady.devolver_origen()) + ady.devolver_costo();
+                predecesores.at(ady.devolver_destino()) = ady.devolver_origen();
+            }
+        }
     }
 
+    for (pair<int, int> dis : distancias) {
+        cout << "para el vertice: " << dis.first << " el costo es : " << dis.second << endl;
+    }
 
+    cout << endl;
+
+    for (pair<int, int> pre : predecesores) {
+        cout << "para el vertice : " <<pre.first << " el predecesor es : " << pre.second << endl;
+    }
 }
 
 
 int main() {
-    cout << "Hello, World!" << endl;
+    Grafo<int> g;
+
+    g.agregar_vertice(1);
+    g.agregar_vertice(2);
+    g.agregar_vertice(3);
+    g.agregar_vertice(4);
+    g.agregar_vertice(5);
+    g.agregar_vertice(6);
+
+    g.agregar_arco(1, 2, 2);
+    g.agregar_arco(1, 3, 1);
+    g.agregar_arco(2, 3, 4);
+    g.agregar_arco(2, 5, 3);
+    g.agregar_arco(2, 4, 1);
+    g.agregar_arco(3, 5, 5);
+    g.agregar_arco(3, 4, 4);
+    g.agregar_arco(4, 6, 2);
+    g.agregar_arco(5, 6, 1);
+
+    dijkstra(g, 1);
+
     return 0;
 }
