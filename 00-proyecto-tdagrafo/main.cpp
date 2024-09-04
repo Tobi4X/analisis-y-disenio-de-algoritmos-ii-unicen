@@ -75,6 +75,18 @@ int main(int argc, char **argv)
 	g.agregar_arco(5, 4, 89);
 	g.agregar_arco(6, 6, 34);
 
+    list<Arco<int>> arcos;
+    g.devolver_arcos(arcos);
+    cout<<"Arcos ="<<endl;
+    for(Arco<int> ar : arcos)
+    {
+        cout<<"Origen : "<<ar.devolver_origen()<<endl;
+        cout<<"Destino : "<<ar.devolver_destino()<<endl;
+        cout<<endl;
+    }
+    cout<<"fin vertices"<<endl;
+    cout<<endl;
+
 	// Mostramos el grafo
 	cout << "Estructura del grafo:\n" << "(" << g.cantidad_vertices()
         << " vertices, " << g.cantidad_arcos() << " arcos)" << endl;
