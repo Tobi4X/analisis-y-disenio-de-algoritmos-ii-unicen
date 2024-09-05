@@ -130,5 +130,34 @@ int main() {
         cout << "para el vertice : " <<pre.first << " el predecesor es : " << pre.second << endl;
     }
 
+    map<int, map<int,int>> distanciasA;
+    map<int, map<int, int>> predecesoresA;
+
+    list<int> vertices;
+    g.devolver_vertices(vertices);
+
+    for (int v : vertices) {
+        distancias.clear();
+        predecesores.clear();
+        dijkstraHasta(g,v,4,distancias,predecesores);
+        distanciasA.emplace(v,distancias);
+        predecesoresA.emplace(v,predecesores);
+    }
+
+    for (int v : vertices) {
+        cout<<"--- "<<v<<" ---"<<endl;
+        for (pair<int, int> dis : distanciasA.at(v)) {
+            cout << "para el vertice: " << dis.first << " el costo es : " << dis.second << endl;
+        }
+
+        cout << endl;
+
+        for (pair<int, int> pre : predecesoresA.at(v)) {
+            cout << "para el vertice : " <<pre.first << " el predecesor es : " << pre.second << endl;
+        }
+        cout<<"---------"<<endl;
+        cout<<endl;
+    }
+
     return 0;
 }

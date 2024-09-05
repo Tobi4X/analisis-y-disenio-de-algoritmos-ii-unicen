@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/Documentos/Facultad/AyDA II/01-tp/01-caminos-minimos/cmake-build-debug",
-		"source" : "D:/Documentos/Facultad/AyDA II/01-tp/01-caminos-minimos"
+		"build" : "C:/Users/Tobias/Documents/Facultad/AYDA II/01-tp/01-caminos-minimos/cmake-build-debug",
+		"source" : "C:/Users/Tobias/Documents/Facultad/AYDA II/01-tp/01-caminos-minimos"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 7
+		"minor" : 6
 	}
 }

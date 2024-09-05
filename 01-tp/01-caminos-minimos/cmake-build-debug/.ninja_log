@@ -1,3 +1,5 @@
 # ninja log v6
 2	530	7470874782185199	CMakeFiles/01_caminos_minimos.dir/main.cpp.obj	6298433c541a40a2
 533	933	7470874787495926	01_caminos_minimos.exe	e773797cad30c87b
+11	1787	7472611704119666	CMakeFiles/01_caminos_minimos.dir/main.cpp.obj	6298433c541a40a2
+1788	2187	7472611721891944	01_caminos_minimos.exe	e773797cad30c87b
