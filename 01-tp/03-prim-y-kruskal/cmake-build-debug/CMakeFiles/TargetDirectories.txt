@@ -1,0 +1,3 @@
+C:/Users/Tobias/Documents/Facultad/AYDA II/01-tp/03-prim-y-kruskal/cmake-build-debug/CMakeFiles/03_prim_y_kruskal.dir
+C:/Users/Tobias/Documents/Facultad/AYDA II/01-tp/03-prim-y-kruskal/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Tobias/Documents/Facultad/AYDA II/01-tp/03-prim-y-kruskal/cmake-build-debug/CMakeFiles/rebuild_cache.dir
